@@ -1,0 +1,42 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "contracts/access-control",
+    "contracts/exploit",
+    "contracts/storage-key-collisions",
+    "contracts/denial-of-service",
+    "contracts/race-condition/deposit",
+    "contracts/race-condition/staking",
+    "integration-tests",
+]
+default-members = [
+    "contracts/access-control",
+    "contracts/exploit",
+    "contracts/storage-key-collisions",
+    "contracts/race-condition/deposit",
+    "contracts/race-condition/staking",
+    "contracts/denial-of-service",
+]
+
+[workspace.dependencies]
+near-sdk = "5.3.0"
+near-contract-standards = "5.3.0"
+near-workspaces = "0.11.0"
+tokio = "1.12.0"
+serde_json = "1"
+color-eyre = "0.6.3"
+
+
+[profile.release]
+codegen-units = 1
+# Tell `rustc` to optimize for small code size.
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+# Opt into extra safety checks on arithmetic operations https://stackoverflow.com/a/64136471/249801
+overflow-checks = true
+
+[patch.crates-io]
+parity-secp256k1 = { git = 'https://github.com/paritytech/rust-secp256k1.git' }

@@ -1,0 +1,19 @@
+[package]
+name = "integration-tests"
+description = "cargo-near-new-project-description"
+version = "0.1.0"
+edition = "2021"
+# TODO: Fill out the repository field to help NEAR ecosystem tools to discover your project.
+# NEP-0330 is automatically implemented for all contracts built with https://github.com/near/cargo-near.
+# Link to the repository will be available via `contract_source_metadata` view-function.
+#repository = "https://github.com/xxx/xxx"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { workspace = true, features = ["unit-testing"] }
+near-workspaces = { workspace = true, features = ["unstable"] }
+tokio = { workspace = true, features = ["full"] }
+serde_json = { workspace = true }
+color-eyre = { workspace = true }
